@@ -3,7 +3,7 @@
 #include<string.h>
 #include<locale.h>  // Usado para trocar a lingua do compilador
 
-int add(int a, int b){      // Usada no exemplo de função
+int add(int a, int b){      // Usada no exemplo de funÃ§Ã£o
     return a+b;
 }
 int mult(int a, int b){
@@ -13,8 +13,8 @@ int mult(int a, int b){
 
 int main(){
 	// 					====== RESUMO ======
-	setlocale(LC_ALL, "Portuguese");	// Troca a lingua para português
-	printf("Olá\n\n");
+	setlocale(LC_ALL, "Portuguese");	// Troca a lingua para portuguÃªs
+	printf("OlÃ¡\n\n");
 
 	/*					------ Exemplo de printf e scanf ------
 	int num;
@@ -46,17 +46,17 @@ int main(){
 	}
 	*/
 
-	/*					------ Exemplo básico de for ------
+	/*					------ Exemplo bÃ¡sico de for ------
 	for(int i=1;i<=10;i++){
 		printf("%d\n", i);
 	}
 	*/
 
 	/*					------ Exemplo de vetor ------
-	// Tem outros estilos de inicialização de vetor além do usado nesse exemplo, como:
-	// int x[] = {1,2,3,4,5,6};		Usa tamanho automático
+	// Tem outros estilos de inicializaÃ§Ã£o de vetor alÃ©m do usado nesse exemplo, como:
+	// int x[] = {1,2,3,4,5,6};		Usa tamanho automÃ¡tico
 	// ou
-	// int x[3];					Define os elementos conforme o índice
+	// int x[3];					Define os elementos conforme o Ã­ndice
 	//
 	// int x[0] = 1;
 	// int x[1] = 2;
@@ -77,7 +77,7 @@ int main(){
 	}
 	printf("\n");
 	for(int i=0;i<6;i++){
-		printf("Numero na posição %d: %d\n", i, x[i]);
+		printf("Numero na posiÃ§Ã£o %d: %d\n", i, x[i]);
 	}
     */
 
@@ -88,14 +88,14 @@ int main(){
 	// char *fgets (char *str, int count, FILE *stream);
 	fgets(nome, 20, stdin); // Tamanho da string, podia ser sizeof(nome),
                             // o fgets fecha a string automaticamente com '\0'
-	printf("Seu nome é: ");
+	printf("Seu nome Ã©: ");
 	// int fputs(const char *str, FILE *stream);
 	fputs(nome, stdout);
     */
 
 	/*					------ Exemplo de Strings pronta e print com for ------
-	char str[6] = "Felipe\0";   // Vale-se notar que o "\0" é usado para fechar a string,
-	for(int i=0;i<6;i++){       // não é obrigatório mas evita erros.
+	char str[6] = "Felipe\0";   // Vale-se notar que o "\0" Ã© usado para fechar a string,
+	for(int i=0;i<6;i++){       // nÃ£o Ã© obrigatÃ³rio mas evita erros.
 		printf("%c", str[i]);
 	}
     */
@@ -106,14 +106,14 @@ int main(){
 	printf("Digite seu nome: ");
 	scanf("%s", &str);
 
-	printf("Seu nome é: ");
+	printf("Seu nome Ã©: ");
 	for(int i=0;i<6;i++){
 		printf("%c", str[i]);
 	}
     */
 
     /*					------ Exemplo de quanto ocupa uma string de char e um array de int ------
-	int num[5];                     // Ambos vão ser 20 porque cada int ocupa 4 bytes,
+	int num[5];                     // Ambos vÃ£o ser 20 porque cada int ocupa 4 bytes,
 	char string[20];                // por consequencia, um double ocupa 8 bytes, dando 40
 	printf("%d\n", sizeof(num));
 	printf("%d", sizeof(string));
@@ -130,7 +130,7 @@ int main(){
     printf("Existem %d letras 'a' em Banana", count);
     */
 
-    /*					------ Atividade passada em sala (Trocar as letras maiúsculas e minúsculas) ------
+    /*					------ Atividade passada em sala (Trocar as letras maiÃºsculas e minÃºsculas) ------
     char str[40];
 
     printf("Digite algo: ");
@@ -143,7 +143,7 @@ int main(){
             str[i]-=32;
         }
     }
-    printf("Seu texto com maiúsculas e minúsculas trocados é: ");
+    printf("Seu texto com maiÃºsculas e minÃºsculas trocados Ã©: ");
     fputs(str, stdout);
     */
 
@@ -164,17 +164,17 @@ int main(){
     }
     */
 
-    /*					------ Exemplo de uso da função add ------
+    /*					------ Exemplo de uso da funÃ§Ã£o add ------
     int x = 2;
     int y = 2;
     printf("Soma de x + y: %d\n", add(x,y));
     */
 
-    /*					------ Atividade passada em sala (Criar uma função que aceita 2 inteiros e retorna a multiplicação) ------
+    /*					------ Atividade passada em sala (Criar uma funÃ§Ã£o que aceita 2 inteiros e retorna a multiplicaÃ§Ã£o) ------
     int x,y;
-    printf("Digite o 1º número: ");
+    printf("Digite o 1Âº nÃºmero: ");
     scanf("%d", &x);
-    printf("Digite o 2º número: ");
+    printf("Digite o 2Âº nÃºmero: ");
     scanf("%d", &y);
     printf("Resultado de x*y: %d", mult(x,y));
     */

@@ -1,10 +1,6 @@
-/* TIRAR DUVIDAS COM OS MONITORES:
-DUVIDA 1. Na função de criar alunos, o fgets não está deixando inserir o nome
-DUVIDA 2. Na mesma função ou na de exibir, os valores das notas não estão sendo inseridos/exibidos
-
-*/
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<locale.h>
 
 typedef struct{
@@ -22,22 +18,26 @@ void calcularMedia(Aluno *ptr){
     }
 
     float media = (soma / 3.0);
-    ptr->media= media;
+    ptr->media = media;
 }
 
 Aluno criarAluno(){
     Aluno x;
     Aluno *ptr = &x;
-
+    
     printf("Nome do aluno: ");
-    fgets(x.nome, 50, stdin);
+    fgets(x.nome, 50, stdin);	// As funÃ§Ãµes de scan, se o buffer nÃ£o for limpo, armazenam o "enter", e o fgets Ã© pulado
+    x.nome[strcspn(x.nome, "\n")] = 0;	// strcspn procura a string do segundo parametro, iguala a 0 (remove) e retorna a x.nome
     printf("Matricula do aluno: ");
     scanf("%d", &x.matricula);
+    while (getchar() != '\n');	// Limpa o buffer do teclado (removendo \n)
     printf("Idade do aluno: ");
     scanf("%d", &x.idade);
-    for(int i; i<3; i++){
-        printf("%dª nota do aluno: ",i+1);
-        scanf("%d", &x.notas[i]);
+    while (getchar() != '\n'); 
+    for(int i = 0; i<3; i++){
+        printf("%dÂª nota do aluno: ",i+1);
+        scanf("%f", &x.notas[i]);
+        while (getchar() != '\n');
     }
     calcularMedia(ptr);
 
@@ -49,24 +49,24 @@ void exibirAluno(Aluno *x){
     printf("Matricula: %d\n", x->matricula);
     printf("Idade: %d\n", x->idade);
     for(int i = 0; i<3; i++){
-        printf("Nota %d: %.2f\n", i, x->notas[i]);
+        printf("Nota %d: %.2f\n", i+1, x->notas[i]);
     }
     printf("Media das notas: %.2f\n", x->media);
 }
 
 void buscarAluno(Aluno turma[], int matricula){
     int check = 0;
-    int tam = sizeof(turma)/sizeof(turma[0]);
+    int tam = sizeof(turma);
     for(int i = 0; i<tam; i++){
         if(turma[i].matricula == matricula){
-            printf("Aluno encontrado! Suas informações:\n");
+            printf("Aluno encontrado! Suas informaÃ§Ãµes:\n");
             exibirAluno(&turma[i]);
             check = 1;
             break;
         }
     }
     if(check == 0){
-        printf("\nAluno não encontrado!\n");
+        printf("\nAluno nÃ£o encontrado!\n");
     }
 }
 
@@ -84,29 +84,32 @@ int main(){
 
     printf("Qual o tamanho da sua turma: ");
     scanf("%d", &tam);
+    while (getchar() != '\n');
+
     Aluno turma[tam];
 
     while(escolha != -1){
         printf("\nTurma %s\nDeseja:\n1. Adicionar alunos\n2. Buscar Aluno\n(-1 para sair)\nEscolha: ", nomeT);
         scanf("%d", &escolha);
+        while (getchar() != '\n');
         printf("\n");
         if(escolha == 1){
             if(count < tam){
                 turma[count] = criarAluno();
                 count++;
             } else {
-                printf("Sua turma está cheia!\n");
+                printf("Sua turma estÃ¡ cheia!\n");
             }
         } else if (escolha == 2){
-            printf("Qual a matrícula do seu aluno: ");
+            printf("Qual a matrÃ­cula do seu aluno: ");
             scanf("%d", &matri);
+            while (getchar() != '\n');
             buscarAluno(turma, matri);
         } else if (escolha == -1){
             continue;
         } else {
-            printf("Escolha inválida! Tente novamente!");
+            printf("Escolha invÃ¡lida! Tente novamente!");
         }
-        exibirAluno(&turma[count-1]); // USADO PARA CONFERIR SE TUDO ESTÁ CERTO (porque não ta)
     }
 
     system("Pause");
